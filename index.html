@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>íšŒì‚¬ ë…¸ì„ ë„</title>
+  <title>È¸»ç ³ë¼±µµ</title>
   <style>
     html, body {
       margin: 0;
@@ -22,38 +22,38 @@
   <div id="map"></div>
 
   <script>
-    // âœ… ì£¼ìš” ì§€ì  ì¢Œí‘œ ì„¤ì • (ì˜ˆ: íšŒì‚¬ ì§€ì ë“¤)
+    // ? ÁÖ¿ä ÁöÁ¡ ÁÂÇ¥ ¼³Á¤ (¿¹: È¸»ç ÁöÁ¡µé)
     const routePoints = [
-      { name: 'ì„œìš¸ ë³¸ì‚¬', lat: 37.5665, lng: 126.9780 },
-      { name: 'ê°•ë‚¨ ì§€ì ', lat: 37.4979, lng: 127.0276 },
-      { name: 'ì ì‹¤ ì„¼í„°', lat: 37.5110, lng: 127.0980 }
+      { name: '¼­¿ï º»»ç', lat: 37.5665, lng: 126.9780 },
+      { name: '°­³² ÁöÁ¡', lat: 37.4979, lng: 127.0276 },
+      { name: 'Àá½Ç ¼¾ÅÍ', lat: 37.5110, lng: 127.0980 }
     ];
 
-    // ì§€ë„ ì´ˆê¸°í™”
+    // Áöµµ ÃÊ±âÈ­
     const map = new naver.maps.Map('map', {
       center: new naver.maps.LatLng(routePoints[0].lat, routePoints[0].lng),
       zoom: 12
     });
 
-    // ë§ˆì»¤ + ê²½ë¡œ ì¢Œí‘œìš© ë°°ì—´
+    // ¸¶Ä¿ + °æ·Î ÁÂÇ¥¿ë ¹è¿­
     const pathCoords = [];
 
-    // ê° ì§€ì ì— ë§ˆì»¤ í‘œì‹œ
+    // °¢ ÁöÁ¡¿¡ ¸¶Ä¿ Ç¥½Ã
     routePoints.forEach(point => {
       const position = new naver.maps.LatLng(point.lat, point.lng);
 
-      // ë§ˆì»¤ ì¶”ê°€
+      // ¸¶Ä¿ Ãß°¡
       new naver.maps.Marker({
         position,
         map,
         title: point.name
       });
 
-      // ê²½ë¡œ ì¢Œí‘œì— ì¶”ê°€
+      // °æ·Î ÁÂÇ¥¿¡ Ãß°¡
       pathCoords.push(position);
     });
 
-    // ë…¸ì„  ê²½ë¡œ(Polyline) ì¶”ê°€
+    // ³ë¼± °æ·Î(Polyline) Ãß°¡
     const routeLine = new naver.maps.Polyline({
       path: pathCoords,
       strokeColor: '#0078FF',
