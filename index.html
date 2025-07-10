@@ -11,7 +11,7 @@
 <div id="map" style="width:100%;height:400px;"></div>
 
 <script>
-var mapOptions = {
+var map = new naver.maps.Map('map, {
     center: new naver.maps.LatLng(33.4525614,126.571652),
     zoom: 10
 };
@@ -19,17 +19,20 @@ var mapOptions = {
 var polyline = new naver.maps.Polyline({
     map: map,
     path: [
-        new naver.maps.LatLng(33.4525614,126.571652),
-        new naver.maps.LatLng(33.4125614,126.571652),
-        new naver.maps.LatLng(33.4125614,126.511652)
+        [
+            new naver.maps.LatLng(33.4525614,126.571652),
+            new naver.maps.LatLng(33.4125614,126.571652),
+            new naver.maps.LatLng(33.4125614,126.511652)
+        ]
     ],
-    clickable: false,
+    fillColor: '#FF0000',
+    fillOpacity: 0.5,
     strokeColor: '#FF0000',
     strokeOpacity: 0.5,
     strokeWeight: 5
 )};
 
-var map = new naver.maps.Map('map', mapOptions);
+
 </script>
 </body>
 </html>
