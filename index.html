@@ -6,32 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>간단한 지도 표시하기</title>
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=92548xgflo"></script>
+    <style>
+        #map { width: 100%; height: 500px; }
+        .buttons {
+            margin: 10px;
+        }
+        .buttons button {
+            padding: 10px;
+            margin-right: 10px;
+        }
+    </style>
+
 </head>
 <body>
-<div id="map" style="width:100%;height:400px;"></div>
+    <div class="buttons">
+        <button onclick="showRoute(1)"노선1"</buttons>
+        <button onclick="showRoute(1)"노선2"</buttons>
+        <button onclick="showRoute(1)"노선3"</buttons>
+        <button onclick="showRoute(1)"노선4"</buttons>
+    </div>
 
-
-function showLine(lineNumber) {
-    const lines = document.querySeletorAll('.line');
-    lines.forEach(line => {
-        line.style.display = 'none';
-    });
-
-    const selectedLine = document.getElementById('line' + lineNumber);
-    selectedLine.style.display = 'block';
-
-.line {
-    <script id="data">
-// 경로로 표시할 배열(array)
-// naver.maps.LatLng 위도 경도 변수
-    var polylinePath = [
-        new naver.maps.LatLng(33.45276479086917, 126.57178038889958),
-        new naver.maps.LatLng(33.453345199021015, 126.57145486317255),
-        new naver.maps.LatLng(33.45421231912302, 126.57191310038405)
-    ];
-
-    </script>
-
+<div id="map""></div>
 
 <script>
 var map = new naver.maps.Map('map', {
@@ -39,38 +34,66 @@ var map = new naver.maps.Map('map', {
     zoom: 10
 });
 
-var polyline = new naver.maps.Polyline({
-    path: polylinePath,
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 6,
-    map: map
-});
+var routes = {
+    1: [
+    new naver.maps.LatLng(33.45276479086917, 126.57178038889958),
+    new naver.maps.LatLng(33.453345199021015, 126.57145486317255),
+    new naver.maps.LatLng(33.45421231912302, 126.57191310038405)
+    ],
+    2: [
+    new naver.maps.LatLng(33.45421231912302, 126.57191310038405),
+    new naver.maps.LatLng(33.455345199021015, 126.57175486317255),
+    new naver.maps.LatLng(33.45621231912302, 126.57131310038405)
+    ],
+    3: [
+    new naver.maps.LatLng(33.45176479086917, 126.57178038889958),
+    new naver.maps.LatLng(33.450345199021015, 126.57145486317255),
+    new naver.maps.LatLng(33.44921231912302, 126.57191310038405)
+    ],
+    4: [
+    new naver.maps.LatLng(33.45336479086917, 126.57178038889958),
+    new naver.maps.LatLng(33.454445199021015, 126.57205486317255),
+    new naver.maps.LatLng(33.45551231912302, 126.57211310038405)
+    ]
+};
 
-button {
-    padding: 10px 20px;
-    font-size: 10px;
-    margin: 5px;
-    cursor: pointer;
+    var routeMarkers = [];
+    var routeLines = [];
+
+    funtion showRoute(routeId) {
+        clearRoute();
+        var route = routes[routeId];
+        if (route) {
+            var polyline = new naver.maps.Polyline({
+                path: route,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 5
+            });
+            polyline.setMap(map);
+            routeLines.push(polyline);
+            route.forEach(funtion(latlng) {
+                var marker = new naver.maps.Marker({
+                    postion: latlng,
+                    map: map
+                });
+                routeMarkers.push(marker);
+            });
+        }
+    }
+
+funtion clearRoute() {
+    routeMarkers.forEach(funtion(marker) {
+        marker.setMap(null);
+    });
+    routeMarkers = [];
+    routelines.forEach(funtion(polyline) {
+        polyline.setMap(null);
+    });
+    routeLines = [];
 }
-
-<button onclick="showLine(1)">노선1</button>
-<button onclick="showLine(1)">노선2</button>
-<button onclick="showLine(1)">노선3</button>
-<button onclick="showLine(1)">노선4</button>
-
-<div id="line1" class="line"></div>
-<div id="line2" class="line"></div>
-<div id="line3" class="line"></div>
-<div id="line4" class="line"></div>
-
-
 
 
 </script>
-
 </body>
-
-
-
 </html>
