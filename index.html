@@ -17,15 +17,16 @@ var mapOptions = {
 };
 
 var path = [
-    new naver.maps.LatLng(33.4525614,126.571652),
-    new naver.maps.LatLng(33.4425614,126.561652)
+    new naver.maps.LatLng(33.4525614, 126.571652),
+    new naver.maps.LatLng(33.4515614, 126.570652),
+    new naver.maps.LatLng(33.4510614, 126.569652)
     ];
 
 var polyline = new naver.maps.Polyline({
     path: path,
     strokeColor: '#FF0000',
-    strokeOpacity: 1,
-    strokeWeight: 3,
+    strokeOpacity: 0.5,
+    strokeWeight: 30,
     map: map
     });
 
