@@ -13,10 +13,28 @@
 <script>
 var mapOptions = {
     center: new naver.maps.LatLng(33.4525614,126.571652),
-    zoom: 10
+    zoom: 20
 };
 
 var map = new naver.maps.Map('map', mapOptions);
+
+var linePath = [
+    new naver.maps.LatLng(33.4525614,126.571652),
+    new naver.maps.LatLng(33.5525614,126.471652),
+    new naver.maps.LatLng(33.3525614,126.421652),
+   ];
+
+var polyline = new naver.maps.Polyline({
+    path: linePath
+    strokeWeight: 5,
+    strokeColor: '#FF0000'
+    strokeOpacity: 0.7,
+    strokeStyle: 'solid'
+});
+
+polyline.setMap(map);
+
+
 </script>
 </body>
 </html>
