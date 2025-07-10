@@ -1,66 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>회사 노선도</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-    #map {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-
-  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92548xgflo"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 지도 노선도</title>
+    <script type="text/javascript" src="https://openapi.naver.com/openapi/v3/maps.js?clientId=92548xgflo"></script> 
+    <!-- 위의 YOUR_CLIENT_ID를 실제 발급 받은 클라이언트 ID로 변경하세요 -->
+    <style>
+        /* 지도 크기 지정 */
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
-  <div id="map"></div>
+    <h2>네이버 지도 API - 노선도</h2>
+    <div id="map"></div>
+    <script type="text/javascript">
+        // 지도 초기화 함수
+        var map;
+        function initMap() {
+            map = new naver.maps.Map('map', {
+                center: new naver.maps.LatLng(37.5665, 126.9780),  // 서울시청 위치
+                zoom: 12  // 초기 줌 레벨
+            });
 
-  <script>
-    // ? 주요 지점 좌표 설정 (예: 회사 지점들)
-    const routePoints = [
-      { name: '서울 본사', lat: 37.5665, lng: 126.9780 },
-      { name: '강남 지점', lat: 37.4979, lng: 127.0276 },
-      { name: '잠실 센터', lat: 37.5110, lng: 127.0980 }
-    ];
+            // 노선도 경로 정의 (서울 지하철 1호선 예시)
+            var routeCoords = [
+                new naver.maps.LatLng(37.5737, 126.9768),  // 서울역
+                new naver.maps.LatLng(37.5614, 126.9779),  // 시청
+                new naver.maps.LatLng(37.5503, 126.9781),  // 종각
+                new naver.maps.LatLng(37.5406, 126.9905)   // 종로3가
+            ];
 
-    // 지도 초기화
-    const map = new naver.maps.Map('map', {
-      center: new naver.maps.LatLng(routePoints[0].lat, routePoints[0].lng),
-      zoom: 12
-    });
+            // 경로 표시
+            var polyline = new naver.maps.Polyline({
+                map: map,
+                path: routeCoords,
+                strokeColor: '#FF0000',  // 빨간색 경로
+                strokeWeight: 4,         // 경로 두께
+                strokeOpacity: 0.8       // 경로 투명도
+            });
 
-    // 마커 + 경로 좌표용 배열
-    const pathCoords = [];
+            // 노선상에 마커 추가
+            routeCoords.forEach(function(coord) {
+                new naver.maps.Marker({
+                    position: coord,
+                    map: map
+                });
+            });
+        }
 
-    // 각 지점에 마커 표시
-    routePoints.forEach(point => {
-      const position = new naver.maps.LatLng(point.lat, point.lng);
-
-      // 마커 추가
-      new naver.maps.Marker({
-        position,
-        map,
-        title: point.name
-      });
-
-      // 경로 좌표에 추가
-      pathCoords.push(position);
-    });
-
-    // 노선 경로(Polyline) 추가
-    const routeLine = new naver.maps.Polyline({
-      path: pathCoords,
-      strokeColor: '#0078FF',
-      strokeOpacity: 0.8,
-      strokeWeight: 5,
-      map: map
-    });
-  </script>
+        // 지도 초기화 함수 호출
+        naver.maps.onJSContentLoaded = initMap;
+    </script>
 </body>
 </html>
