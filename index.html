@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회사 노선도</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92548xgflo"></script>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    // ✅ 주요 지점 좌표 설정 (예: 회사 지점들)
+    const routePoints = [
+      { name: '서울 본사', lat: 37.5665, lng: 126.9780 },
+      { name: '강남 지점', lat: 37.4979, lng: 127.0276 },
+      { name: '잠실 센터', lat: 37.5110, lng: 127.0980 }
+    ];
+
+    // 지도 초기화
+    const map = new naver.maps.Map('map', {
+      center: new naver.maps.LatLng(routePoints[0].lat, routePoints[0].lng),
+      zoom: 12
+    });
+
+    // 마커 + 경로 좌표용 배열
+    const pathCoords = [];
+
+    // 각 지점에 마커 표시
+    routePoints.forEach(point => {
+      const position = new naver.maps.LatLng(point.lat, point.lng);
+
+      // 마커 추가
+      new naver.maps.Marker({
+        position,
+        map,
+        title: point.name
+      });
+
+      // 경로 좌표에 추가
+      pathCoords.push(position);
+    });
+
+    // 노선 경로(Polyline) 추가
+    const routeLine = new naver.maps.Polyline({
+      path: pathCoords,
+      strokeColor: '#0078FF',
+      strokeOpacity: 0.8,
+      strokeWeight: 5,
+      map: map
+    });
+  </script>
+</body>
+</html>
