@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기</title>
-    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=92548xgflo"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 지도 노선 표시</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92548xgflo"></script>
     <style>
+        #map { width: 100%; height: 500px; }
         .buttons {
             margin: 10px;
         }
@@ -15,86 +15,92 @@
             margin-right: 10px;
         }
     </style>
-
 </head>
 <body>
-<div id="map" style="width:600px; height:400px;"></div>
-
     <div class="buttons">
-        <button onclick="showRoute(1)"노선1"</buttons>
-        <button onclick="showRoute(1)"노선2"</buttons>
-        <button onclick="showRoute(1)"노선3"</buttons>
-        <button onclick="showRoute(1)"노선4"</buttons>
+        <button onclick="showRoute(1)">노선 1</button>
+        <button onclick="showRoute(2)">노선 2</button>
+        <button onclick="showRoute(3)">노선 3</button>
+        <button onclick="showRoute(4)">노선 4</button>
     </div>
+    <div id="map"></div>
 
-<div id="map""></div>
+    <script>
+        // 지도 생성
+        var mapOptions = {
+            center: new naver.maps.LatLng(37.5665, 126.9780), // 서울 중심
+            zoom: 10
+        };
+        var map = new naver.maps.Map('map', mapOptions);
 
-<script>
-var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(33.4525614,126.571652),
-    zoom: 10
-});
+        // 노선 데이터 (각 노선에 해당하는 좌표들)
+        var routes = {
+            1: [
+                new naver.maps.LatLng(37.5665, 126.9780),
+                new naver.maps.LatLng(37.5651, 126.9783),
+                new naver.maps.LatLng(37.5640, 126.9795)
+            ],
+            2: [
+                new naver.maps.LatLng(37.5651, 126.9783),
+                new naver.maps.LatLng(37.5670, 126.9800),
+                new naver.maps.LatLng(37.5700, 126.9830)
+            ],
+            3: [
+                new naver.maps.LatLng(37.5700, 126.9830),
+                new naver.maps.LatLng(37.5720, 126.9850),
+                new naver.maps.LatLng(37.5740, 126.9870)
+            ],
+            4: [
+                new naver.maps.LatLng(37.5740, 126.9870),
+                new naver.maps.LatLng(37.5750, 126.9890),
+                new naver.maps.LatLng(37.5780, 126.9900)
+            ]
+        };
 
-var routes = {
-    1: [
-    new naver.maps.LatLng(33.45276479086917, 126.57178038889958),
-    new naver.maps.LatLng(33.453345199021015, 126.57145486317255),
-    new naver.maps.LatLng(33.45421231912302, 126.57191310038405)
-    ],
-    2: [
-    new naver.maps.LatLng(33.45421231912302, 126.57191310038405),
-    new naver.maps.LatLng(33.455345199021015, 126.57175486317255),
-    new naver.maps.LatLng(33.45621231912302, 126.57131310038405)
-    ],
-    3: [
-    new naver.maps.LatLng(33.45176479086917, 126.57178038889958),
-    new naver.maps.LatLng(33.450345199021015, 126.57145486317255),
-    new naver.maps.LatLng(33.44921231912302, 126.57191310038405)
-    ],
-    4: [
-    new naver.maps.LatLng(33.45336479086917, 126.57178038889958),
-    new naver.maps.LatLng(33.454445199021015, 126.57205486317255),
-    new naver.maps.LatLng(33.45551231912302, 126.57211310038405)
-    ]
-};
+        var routeMarkers = []; // 노선 마커들
+        var routeLines = [];   // 노선 라인들
 
-    var routeMarkers = [];
-    var routeLines = [];
+        // 노선 표시 함수
+        function showRoute(routeId) {
+            // 이전에 표시된 노선 제거
+            clearRoute();
 
-    funtion showRoute(routeId) {
-        clearRoute();
-        var route = routes[routeId];
-        if (route) {
-            var polyline = new naver.maps.Polyline({
-                path: route,
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 5
-            });
-            polyline.setMap(map);
-            routeLines.push(polyline);
-            route.forEach(funtion(latlng) {
-                var marker = new naver.maps.Marker({
-                    postion: latlng,
-                    map: map
+            // 새 노선 표시
+            var route = routes[routeId];
+            if (route) {
+                var polyline = new naver.maps.Polyline({
+                    path: route,
+                    strokeColor: '#0033FF', // 라인 색상
+                    strokeOpacity: 0.8,
+                    strokeWeight: 5
                 });
-                routeMarkers.push(marker);
-            });
+                polyline.setMap(map);
+                routeLines.push(polyline);
+
+                route.forEach(function(latlng) {
+                    var marker = new naver.maps.Marker({
+                        position: latlng,
+                        map: map
+                    });
+                    routeMarkers.push(marker);
+                });
+            }
         }
-    }
 
-funtion clearRoute() {
-    routeMarkers.forEach(funtion(marker) {
-        marker.setMap(null);
-    });
-    routeMarkers = [];
-    routelines.forEach(funtion(polyline) {
-        polyline.setMap(null);
-    });
-    routeLines = [];
-}
+        // 기존 노선 제거 함수
+        function clearRoute() {
+            // 마커 삭제
+            routeMarkers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            routeMarkers = [];
 
-
-</script>
+            // 라인 삭제
+            routeLines.forEach(function(polyline) {
+                polyline.setMap(null);
+            });
+            routeLines = [];
+        }
+    </script>
 </body>
 </html>
