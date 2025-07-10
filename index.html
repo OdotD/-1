@@ -22,7 +22,11 @@ var polyline = new naver.maps.Polyline({
         new naver.maps.LatLng(33.4525614,126.571652),
         new naver.maps.LatLng(33.4125614,126.571652),
         new naver.maps.LatLng(33.4125614,126.511652)
-    ]
+    ],
+    clickable: false,
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.5,
+    strokeWeight: 5
 )};
 
 var map = new naver.maps.Map('map', mapOptions);
