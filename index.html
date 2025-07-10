@@ -10,29 +10,31 @@
 <body>
 <div id="map" style="width:100%;height:400px;"></div>
 
+
+<script id="data">
+// 경로로 표시할 배열(array)
+// naver.maps.LatLng 위도 경도 변수
+var polylinePath = [
+    new naver.maps.LatLng(33.45276479086917, 126.57178038889958),
+    new naver.maps.LatLng(33.453345199021015, 126.57145486317255),
+    new naver.maps.LatLng(33.45421231912302, 126.57191310038405)
+];
+</script>
+
+
 <script>
-var mapOptions = {
+var map = new naver.maps.Map('map', {
     center: new naver.maps.LatLng(33.4525614,126.571652),
     zoom: 10
-};
-
-var path = [
-    new naver.maps.LatLng(33.4525614, 126.571652),
-    new naver.maps.LatLng(33.4515614, 126.570652),
-    new naver.maps.LatLng(33.4510614, 126.569652)
-    ];
+});
 
 var polyline = new naver.maps.Polyline({
-    path: path,
+    path: polylinePath,
     strokeColor: '#FF0000',
-    strokeOpacity: 0.5,
-    strokeWeight: 30,
+    strokeOpacity: 0.8,
+    strokeWeight: 6,
     map: map
-    });
-
-
-
-var map = new naver.maps.Map('map', mapOptions);
+});
 
 
 </script>
