@@ -18,11 +18,28 @@ var mapOptions = {
 
 var map = new naver.maps.Map('map', mapOptions);
 
-            var routeCoords = [
+            var routeCoords = {
                 new naver.maps.LatLng(37.5737, 126.9768),  // 서울역
                 new naver.maps.LatLng(37.5614, 126.9779),  // 시청
                 new naver.maps.LatLng(37.5503, 126.9781),  // 종각
                 new naver.maps.LatLng(37.5406, 126.9905)   // 종로3가
+}
+            var polyline = new naver.maps.Polyline({
+                map: map,
+                path: routeCoords,
+                strokeColor: '#FF0000',  // 빨간색 경로
+                strokeWeight: 4,         // 경로 두께
+                strokeOpacity: 0.8       // 경로 투명도
+            });
+
+            // 노선상에 마커 추가
+            routeCoords.forEach(function(coord) {
+                new naver.maps.Marker({
+                    position: coord,
+                    map: map
+                });
+            });
+}
 </script>
 </body>
 </html>
