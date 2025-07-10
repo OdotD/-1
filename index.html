@@ -16,21 +16,14 @@ var map = new naver.maps.Map('map, {
     zoom: 10
 };
 
-var polyline = new naver.maps.Polyline({
-    map: map,
-    path: [
-        [
-            new naver.maps.LatLng(33.4525614,126.571652),
-            new naver.maps.LatLng(33.4125614,126.571652),
-            new naver.maps.LatLng(33.4125614,126.511652)
-        ]
-    ],
-    fillColor: '#FF0000',
-    fillOpacity: 0.5,
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.5,
-    strokeWeight: 5
-)};
+PathOverlay path = new PathOverlay();
+path.setCoords(Arrays.asList(
+    new LatLng(33.4525614,126.571652),
+    new LatLng(33.4125614,126.571652),
+    new LatLng(33.4525614,126.561652),
+));
+path.setMap(naverMap);
+
 
 
 </script>
