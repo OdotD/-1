@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>네이버 지도 노선 표시</title>
+    <title>JDC 셔틀버스 노선</title>
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=92548xgflo"></script>
     <style>
         #map { width: 100%; height: 500px; }
@@ -19,10 +19,11 @@
 </head>
 <body>
     <div class="buttons">
-        <button onclick="showRoute(1)">노선 1</button>
-        <button onclick="showRoute(2)">노선 2</button>
-        <button onclick="showRoute(3)">노선 3</button>
-        <button onclick="showRoute(4)">노선 4</button>
+        <button onclick="showRoute(1)">1. 첨단과학기술단지-신제주1(외도)</button>
+        <button onclick="showRoute(2)">2. 첨단기술과학단지-신제주2(신제주)</button>
+        <button onclick="showRoute(3)">3. 첨단기술과학단지-구제주1(용담)</button>
+        <button onclick="showRoute(4)">4. 첨단기술과학단지-구제주2(삼양)</button>
+        <button onclick="showRoute(5)">5. 항공우주박물관-제주시</button>
     </div>
     <div id="map"></div>
 
@@ -55,6 +56,11 @@
                 new naver.maps.LatLng(37.5740, 126.9870),
                 new naver.maps.LatLng(37.5750, 126.9890),
                 new naver.maps.LatLng(37.5780, 126.9900)
+            ],
+            5: [
+                new naver.maps.LatLng(37.5730, 126.9870),
+                new naver.maps.LatLng(37.5780, 126.9890),
+                new naver.maps.LatLng(37.5800, 126.9900)
             ]
         };
 
@@ -105,14 +111,11 @@
     </script>
 
 <div id="decription">
-<p>노선1 차량 번호: 03 영 1557</p>
-<p>노선1 운전자 연락처: 김모씨 010-1557-1557</p>
-<p>노선2 차량 번호: 03 영 1661</p>
-<p>노선2 운전자 연락처: 김모씨 010-1661-1661</p>
-<p>노선3 차량 번호: 03 영 155B</p>
-<p>노선3 운전자 연락처: 김모씨 010-1234-1234</p>
-<p>노선4 차량 번호: 03 영 1566</p>
-<p>노선4 운전자 연락처: 김모씨 010-1777-7777</p>
+<p>1. 김춘길 010-6886-5383, 차량번호: 2867</p>
+<p>2. 김관태 010-9486-4456, 차량번호: 2899</p>
+<p>3. 이지철 010-9722-7402, 차량번호: 2847</p>
+<p>4. 전등환 010-6395-4865, 차량번호: 2834</p>
+<p>5. 오문빈 010-3146-2255, 차량번호: 2844</p>
 </div>
 
 </body>
