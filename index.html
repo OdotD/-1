@@ -27,7 +27,7 @@
     <script>
         // 지도 생성
         var map = new naver.maps.Map('map, {
-            center: new naver.maps.LatLng(33.4534, 126.5725), // 엘리트 빌딩 중심
+            center: new naver.maps.LatLng(33.4534, 126.5725),
             zoom: 13
         })
 
@@ -110,17 +110,14 @@
   function drawRoute(routeKey) {
     const route = routes[routeKey];
 
-    // 기존 polyline 및 마커 제거
     if (polyline) {
       polyline.setMap(null);
     }
     markers.forEach(marker => marker.setMap(null));
     markers = [];
 
-    // 경로 좌표 생성
     const pathCoords = route.path.map(coord => new naver.maps.LatLng(coord[0], coord[1]));
 
-    // 경로 표시
     polyline = new naver.maps.Polyline({
       map: map,
       path: pathCoords,
@@ -129,7 +126,6 @@
       strokeOpacity: 0.8,
     });
 
-    // 주요 경유지 마커 표시
     route.waypoints.forEach((coord, index) => {
       const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(coord[0], coord[1]),
@@ -139,7 +135,6 @@
       markers.push(marker);
     });
 
-    // 중심 위치 조정
     map.setCenter(pathCoords[0]);
   }
 
