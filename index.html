@@ -19,11 +19,13 @@
 </head>
 <body>
     <div class="buttons">
-        <button onclick="showRoute(1)">1. 신제주1(외도)</button>
-        <button onclick="showRoute(2)">2. 신제주2(신제주)</button>
-        <button onclick="showRoute(3)">3. 구제주1(용담)</button>
-        <button onclick="showRoute(4)">4. 구제주2(삼양)</button>
-        <button onclick="showRoute(5)">5. 항공우주박물관</button>
+        <button onclick="drawRoute('route1')">1. 신제주1(외도)</button>
+/*
+        <button onclick="drawRoute('route2')">2. 신제주2(신제주)</button>
+        <button onclick="drawRoute('route3')">3. 구제주1(용담)</button>
+        <button onclick="drawRoute('route4')">4. 구제주2(삼양)</button>
+        <button onclick="drawRoute('route5')">5. 항공우주박물관</button>
+*/
     </div>
     <div id="map"></div>
 
@@ -31,7 +33,7 @@
         // 지도 생성
         var map = new naver.maps.Map('map, {
             center: new naver.maps.LatLng(33.4534, 126.5725), // 엘리트 빌딩 중심
-            zoom: 10
+            zoom: 13
         })
 
         let polyline = null;
@@ -106,7 +108,7 @@
                     [33.481443, 126.496476],
                     [33.453404, 126.572569]
                 ]
-            },
+            }
         };
 
 
