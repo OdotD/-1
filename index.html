@@ -20,12 +20,11 @@
 <body>
     <div class="buttons">
         <button onclick="drawRoute('route1')">1. 신제주1(외도)</button>
-/*
-        <button onclick="drawRoute('route2')">2. 신제주2(신제주)</button>
-        <button onclick="drawRoute('route3')">3. 구제주1(용담)</button>
-        <button onclick="drawRoute('route4')">4. 구제주2(삼양)</button>
-        <button onclick="drawRoute('route5')">5. 항공우주박물관</button>
-*/
+//        <button onclick="drawRoute('route2')">2. 신제주2(신제주)</button>
+  //      <button onclick="drawRoute('route3')">3. 구제주1(용담)</button>
+    //    <button onclick="drawRoute('route4')">4. 구제주2(삼양)</button>
+      //  <button onclick="drawRoute('route5')">5. 항공우주박물관</button>
+
     </div>
     <div id="map"></div>
 
@@ -148,132 +147,6 @@
     map.setCenter(pathCoords[0]);
   }
 
-
-/*
-        // 노선 데이터 (각 노선에 해당하는 좌표들)
-        var routes = {
-            1: [
-                new naver.maps.LatLng(33.485801, 126.430903),
-                new naver.maps.LatLng(33.484000, 126.430931),
-                new naver.maps.LatLng(33.484009, 126.435072),
-                new naver.maps.LatLng(33.482451, 126.440106),
-                new naver.maps.LatLng(33.481918, 126.444923),
-                new naver.maps.LatLng(33.479447, 126.453248),
-                new naver.maps.LatLng(33.479120, 126.464196),
-                new naver.maps.LatLng(33.479835, 126.466033),
-                new naver.maps.LatLng(33.481995, 126.463531),
-                new naver.maps.LatLng(33.483535, 126.463914),
-                new naver.maps.LatLng(33.485595, 126.466376),
-                new naver.maps.LatLng(33.484151, 126.468085),
-                new naver.maps.LatLng(33.483373, 126.469000),
-                new naver.maps.LatLng(33.487304, 126.474049),
-                new naver.maps.LatLng(33.488879, 126.476085),
-                new naver.maps.LatLng(33.485746, 126.479650),
-                new naver.maps.LatLng(33.484311, 126.480250),
-                new naver.maps.LatLng(33.482059, 126.481243),
-                new naver.maps.LatLng(33.482051, 126.482274),
-                new naver.maps.LatLng(33.481917, 126.486302),
-                new naver.maps.LatLng(33.481828, 126.489893),
-                new naver.maps.LatLng(33.485841, 126.490055),
-                new naver.maps.LatLng(33.485800, 126.491011),
-                new naver.maps.LatLng(33.485665, 126.496466),
-                new naver.maps.LatLng(33.485048, 126.496423),
-                new naver.maps.LatLng(33.482062, 126.496371),
-                new naver.maps.LatLng(33.481462, 126.496624),
-                new naver.maps.LatLng(33.480652, 126.497007),
-                new naver.maps.LatLng(33.474836, 126.502032),
-                new naver.maps.LatLng(33.472947, 126.504781),
-                new naver.maps.LatLng(33.472679, 126.506395),
-                new naver.maps.LatLng(33.470827, 126.509161),
-                new naver.maps.LatLng(33.467129, 126.510869),
-                new naver.maps.LatLng(33.466887, 126.511792),
-                new naver.maps.LatLng(33.467129, 126.513299),
-                new naver.maps.LatLng(33.466744, 126.514018),
-                new naver.maps.LatLng(33.460568, 126.515305),
-                new naver.maps.LatLng(33.460407, 126.518234),
-                new naver.maps.LatLng(33.461839, 126.533222),
-                new naver.maps.LatLng(33.462376, 126.546258),
-                new naver.maps.LatLng(33.463387, 126.555914),
-                new naver.maps.LatLng(33.464721, 126.560924),
-                new naver.maps.LatLng(33.467889, 126.569797),
-                new naver.maps.LatLng(33.465544, 126.569378),
-                new naver.maps.LatLng(33.461141, 126.569260),
-                new naver.maps.LatLng(33.460371, 126.569700),
-                new naver.maps.LatLng(33.459458, 126.571095),
-                new naver.maps.LatLng(33.457372, 126.571546),
-                new naver.maps.LatLng(33.456378, 126.571353),
-                new naver.maps.LatLng(33.454857, 126.571503),
-                new naver.maps.LatLng(33.454910, 126.572962),
-                new naver.maps.LatLng(33.453380, 126.573155),
-                new naver.maps.LatLng(33.453353, 126.572629)
-            ],
-            2: [
-                new naver.maps.LatLng(37.5651, 126.9783),
-                new naver.maps.LatLng(37.5670, 126.9800),
-                new naver.maps.LatLng(37.5700, 126.9830)
-            ],
-            3: [
-                new naver.maps.LatLng(37.5700, 126.9830),
-                new naver.maps.LatLng(37.5720, 126.9850),
-                new naver.maps.LatLng(37.5740, 126.9870)
-            ],
-            4: [
-                new naver.maps.LatLng(37.5740, 126.9870),
-                new naver.maps.LatLng(37.5750, 126.9890),
-                new naver.maps.LatLng(37.5780, 126.9900)
-            ],
-            5: [
-                new naver.maps.LatLng(37.5730, 126.9870),
-                new naver.maps.LatLng(37.5780, 126.9890),
-                new naver.maps.LatLng(37.5800, 126.9900)
-            ]
-        };
-
-        var routeLines = [];   // 노선 라인들
-        var routeMarkers = [];
-
-        // 노선 표시 함수
-        function showRoute(routeId) {
-            // 이전에 표시된 노선 제거
-            clearRoute();
-
-            // 새 노선 표시
-            var route = routes[routeId];
-            if (route) {
-                var polyline = new naver.maps.Polyline({
-                    path: route,
-                    strokeColor: '#0033FF', // 라인 색상
-                    strokeOpacity: 0.8,
-                    strokeWeight: 5
-                });
-                polyline.setMap(map);
-                routeLines.push(polyline);
-
-                route.forEach(function(latlng) {
-                    var marker = new naver.maps.Marker({
-                        position: latlng,
-                        map: map
-                    });
-                    routeMarkers.push(marker);
-                });
-            }
-        }
-
-        // 기존 노선 제거 함수
-        function clearRoute() {
-            // 마커 삭제
-            routeMarkers.forEach(function(marker) {
-                marker.setMap(null);
-            });
-            routeMarkers = [];
-
-            // 라인 삭제
-            routeLines.forEach(function(polyline) {
-                polyline.setMap(null);
-            });
-            routeLines = [];
-        }
-*/
 
     </script>
 
